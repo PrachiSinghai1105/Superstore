@@ -1,1 +1,7 @@
 Following are the link to Tabaleau Visualizations.
+
+https://public.tableau.com/app/profile/prachi.singhai/viz/TAbleauSuperstore/Story1?publish=yes
+
+https://public.tableau.com/app/profile/prachi.singhai/viz/TableauSuperstoreCategoryandSubcategoryAnalysis/Story2?publish=yes
+
+https://public.tableau.com/app/profile/prachi.singhai/viz/TableauSuperstoreCustomeranalysis/Story3?publish=yes
