@@ -1,0 +1,191 @@
+
+select *from superstore limit 5;
+SELECT 
+   year(OrderDate) AS year,
+    SUM(sales) AS total_sales,
+    SUM(profit) AS total_profit
+FROM
+    superstore
+GROUP BY year
+ORDER BY year ASC;
+
+SELECT 
+  Year(OrderDate) AS year,
+  CASE 
+    WHEN MONTH(OrderDate) IN (1,2,3) THEN 'Q1'
+    WHEN MONTH(OrderDate) IN (4,5,6) THEN 'Q2'
+    WHEN MONTH(OrderDate) IN (7,8,9) THEN 'Q3'
+    ELSE 'Q4'
+  END AS quarter,
+  SUM(sales) AS total_sales,
+  SUM(profit) AS total_profit
+FROM superstore
+GROUP BY year, quarter
+ORDER BY year, quarter;
+
+SELECT region, SUM(sales) AS total_sales, SUM(profit) AS total_profits
+FROM superstore
+GROUP BY region
+ORDER BY total_profits DESC;
+
+SELECT region, ROUND((SUM(profit) / SUM(sales)) * 100, 2) as profit_margin
+FROM superstore
+GROUP BY region
+ORDER BY profit_margin DESC;
+
+
+SELECT State, SUM(Sales) as Total_Sales, SUM(Profit) as Total_Profits, ROUND((SUM(profit) / SUM(sales)) * 100, 2) as profit_margin
+FROM superstore
+GROUP BY State
+ORDER BY Total_Profits DESC
+LIMIT 10;
+
+SELECT state, SUM(Sales) AS Total_sales, SUM(profit) AS Total_Profits , 
+ROUND(sum(Profit)/sum(sales),2)*100
+FROM superstore
+GROUP BY State order by Total_Profits ASC LIMIT 10;
+
+SELECT city , SUM(Sales) AS Total_sales, SUM(profit) AS Total_Profits , 
+ROUND(sum(Profit)/sum(sales),2)*100
+FROM superstore
+GROUP BY City order by Total_Profits DESC LIMIT 10;
+
+SELECT city , SUM(Sales) AS Total_sales, SUM(profit) AS Total_Profits , 
+ROUND(sum(Profit)/sum(sales),2)*100
+FROM superstore
+GROUP BY City order by Total_Profits ASC LIMIT 10;
+
+SELECT discount, avg(Sales) as Avg_sales
+FROM superstore
+GROUP BY Discount
+ORDER BY Discount ASC;
+
+SELECT 
+    category, SUM(discount ) AS total_discount
+FROM
+    superstore
+GROUP BY category
+ORDER BY total_discount;
+
+SELECT 
+    category, subcategory,  SUM(discount ) AS total_discount
+FROM
+    superstore
+GROUP BY category, subcategory
+ORDER BY total_discount DESC;
+
+SELECT 
+    category,
+    region,
+    SUM(Sales) AS total_sales,
+    SUM(Profit) AS total_profit,
+    ROUND(SUM(profit) / SUM(sales) * 100, 2) AS profit_margin
+FROM
+    superstore
+GROUP BY category , region
+ORDER BY total_profit DESC;
+
+SELECT 
+    category,
+    state,
+    SUM(Sales) AS total_sales,
+    SUM(Profit) AS total_profit,
+    ROUND(SUM(profit) / SUM(sales) * 100, 2) AS profit_margin
+FROM
+    superstore
+GROUP BY category , state
+ORDER BY total_profit DESC;
+
+SELECT 
+    subcategory,
+    region,
+    SUM(Sales) AS total_sales,
+    SUM(Profit) AS total_profit,
+    ROUND(SUM(profit) / SUM(sales) * 100, 2) AS profit_margin
+FROM
+    superstore
+GROUP BY subcategory , region
+ORDER BY total_profit DESC;
+
+SELECT 
+     subcategory,
+    state,
+    SUM(Sales) AS total_sales,
+    SUM(Profit) AS total_profit,
+    ROUND(SUM(profit) / SUM(sales) * 100, 2) AS profit_margin
+FROM
+    superstore
+GROUP BY  subcategory , state
+ORDER BY total_profit DESC;
+
+SELECT 
+     subcategory,
+    state,
+    SUM(Sales) AS total_sales,
+    SUM(Profit) AS total_profit,
+    ROUND(SUM(profit) / SUM(sales) * 100, 2) AS profit_margin
+FROM
+    superstore
+GROUP BY  subcategory , state
+ORDER BY total_profit ASC;
+
+SELECT 
+    ProductName,
+    SUM(sales) AS Total_sales,
+    SUM(Profit) AS Total_profit
+FROM
+    Superstore
+GROUP BY ProductName
+ORDER BY Total_profit;
+
+SELECT 
+    productname,
+    SUM(sales) AS total_sales,
+    SUM(profit) AS total_profit
+FROM
+    superstore
+GROUP BY productname
+ORDER BY total_profit ASC;
+
+SELECT segment, SUM(sales) AS total_sales, SUM(profit) AS total_profit
+FROM superstore
+GROUP BY segment
+ORDER BY total_profit DESC;
+
+SELECT 
+    COUNT(DISTINCT (CustomerID)) AS total_customers
+FROM
+    superstore;
+
+SELECT 
+    region, COUNT(DISTINCT (CustomerID)) AS total_customers
+FROM
+    superstore
+GROUP BY region;
+
+SELECT 
+    state, COUNT(DISTINCT (CustomerID)) AS total_customers
+FROM
+    superstore
+GROUP BY state;
+
+SELECT region, COUNT(DISTINCT customerid) AS total_customers
+FROM superstore
+GROUP BY region
+ORDER BY total_customers DESC;
+
+SELECT 
+    customerID,
+    SUM(sales) AS Total_sales,
+    SUM(Profit) AS Total_Profit
+    FROM Superstore
+    GROUP by CustomerID
+order by Total_sales LIMIT 15;
+
+SELECT ROUNd(AVG(shipdate-Orderdate),1) AS avg_shipping_time
+FROM superstore ;
+
+SELECT shipmode,ROUND(AVG(shipdate - orderdate),1) AS avg_shipping_time
+FROM superstore
+GROUP BY shipmode
+ORDER BY avg_shipping_time;
